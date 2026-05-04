@@ -1,20 +1,10 @@
-let express = require('express');
-let router = express.Router();
- 
-//Importar tablas
-const ejemplos = require('../controllers/ejemplo.controller.js');
-const juegos = require('../controllers/juego.controller.js');
+const express = require('express');
+const router = express.Router();
 
-//Tabla ejemplos
-router.post('/api/ejemplos/create', ejemplos.create);
-router.get('/api/ejemplos/all', ejemplos.retrieveAllEjemplos);
-router.get('/api/ejemplos/buscar/:nombre', ejemplos.getEjemploByName);
-router.get('/api/ejemplos/onebyid/:id', ejemplos.getEjemploById);
-router.put('/api/ejemplos/update/:id', ejemplos.updateById);
-router.delete('/api/ejemplos/delete/:id', ejemplos.deleteById);
-
-
-
-
+// Aquí es donde tus compañeros o tú agregarán las rutas más adelante
+// Por ahora, dejamos una ruta de prueba
+router.get('/api/test', (req, res) => {
+    res.send({ message: "El router está funcionando correctamente" });
+});
 
 module.exports = router;
