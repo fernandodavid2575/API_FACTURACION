@@ -5,46 +5,57 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    id_categoria: {
+    codigo_producto: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
+    id_categoria_producto: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    nombre: {
-      type: DataTypes.STRING(150),
-      allowNull: false,
-    },
-    descripcion: {
-      type: DataTypes.TEXT,
       allowNull: true,
     },
-    precio: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
+    nombre_producto: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     },
-    stock: {
+    descripcion_producto: {
+      type: DataTypes.STRING(200),
+      allowNull: true,
+    },
+    precio_unitario_producto: {
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
+    },
+    precio_costo_producto: {
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
+    },
+    stock_actual_producto: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0,
     },
-    stock_minimo: {
+    stock_minimo_producto: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 5,       // valor global por defecto
+      allowNull: true,
+      defaultValue: 5,  // valor global por defecto
     },
-    activo: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
+    fecha_creacion_producto: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+    },
+    fecha_actualizacion_producto: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
     },
   }, {
     tableName: 'producto',
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    timestamps: false, // manejamos fechas manualmente
   });
 
   Producto.associate = (db) => {
     Producto.belongsTo(db.Categoria, {
-      foreignKey: 'id_categoria',
+      foreignKey: 'id_categoria_producto',
       as: 'categoria',
     });
   };
