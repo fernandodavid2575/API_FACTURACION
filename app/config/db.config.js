@@ -26,4 +26,8 @@ db.Factura   = require('../models/factura.model.js')(sequelize, Sequelize);
 db.Pago            = require('../models/pago.model.js')(sequelize, Sequelize);
 db.DetalleFactura  = require('../models/detalle_factura.model.js')(sequelize, Sequelize);
 
+// Asociaciones
+db.Usuario.belongsTo(db.Rol, { foreignKey: 'id_rol', as: 'rol' });
+db.Rol.hasMany(db.Usuario, { foreignKey: 'id_rol', as: 'usuarios' });
+
 module.exports = db;
