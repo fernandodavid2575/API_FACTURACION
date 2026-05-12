@@ -1,7 +1,7 @@
 module.exports = {
-  database: 'API_DB',
+  database: 'api_db',
   username: 'postgres',
-  password: 'umg123',
+  password: '1234',
   host: 'localhost',
   dialect: 'postgres',
   pool: {

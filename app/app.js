@@ -5,10 +5,6 @@ const db = require('./config/db.config.js'); // Quité el /app/ porque ya estás
 const router = require("./routers/router.js"); // Quité el /app/ porque ya estás dentro
 const errorHandler = require("./middlewares/errorHandler");
 
-// Rutas de Dev1 (Categorías y Productos) — se montan aquí porque el resto de
-// rutas viven en router.js. Las rutas de Dev2/Dev3/Dev4 ya están en router.js.
-const categoriaRoutes = require('./routers/categoriaRoutes.js');
-const productoRoutes  = require('./routers/productoRoutes.js');
 
 const app = express();
 
@@ -31,10 +27,8 @@ db.sequelize.authenticate()
     console.error('❌ Error al conectar a la base de datos:', err.message);
   });
 
-// --- Rutas ---
-app.use('/api/categorias', categoriaRoutes);
-app.use('/api/productos',  productoRoutes);
-app.use('/', router);
+
+app.use('/api', router);
 
 app.get("/", (req, res) => {
   res.json({ message: "Bienvenido Estudiantes de UMG" });
